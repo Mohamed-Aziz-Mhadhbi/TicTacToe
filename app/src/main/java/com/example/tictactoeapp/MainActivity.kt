@@ -32,7 +32,22 @@ class MainActivity : AppCompatActivity() {
         PlayGame(cellId,buSelected)
     }
 
+    var activePlayer = 1
+
+    var player1 = ArrayList<Int>()
+    var player2 = ArrayList<Int>()
+
     fun PlayGame(cellId:Int, buSelected:Button){
+
+        if( activePlayer == 1){
+            buSelected.text = "X"
+            buSelected.setBackgroundResource(R.color.blue)
+            player1.add(cellId)
+        }else{
+            buSelected.text = "O"
+            buSelected.setBackgroundResource(R.color.darkgreen)
+            player2.add(cellId)
+        }
 
     }
 }
