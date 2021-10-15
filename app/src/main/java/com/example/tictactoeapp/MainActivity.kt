@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -43,11 +44,94 @@ class MainActivity : AppCompatActivity() {
             buSelected.text = "X"
             buSelected.setBackgroundResource(R.color.blue)
             player1.add(cellId)
+            activePlayer = 2
         }else{
             buSelected.text = "O"
             buSelected.setBackgroundResource(R.color.darkgreen)
             player2.add(cellId)
+            activePlayer = 1
         }
+        buSelected.isEnabled = false
 
+        checkWinner()
     }
+
+   fun checkWinner(){
+
+       var winer = -1
+
+       // row 1
+       if( player1.contains(1) && player1.contains(2) && player1.contains(3) ){
+           winer = 1
+       }
+       if( player2.contains(1) && player2.contains(2) && player2.contains(3) ){
+           winer = 2
+       }
+
+       // row 2
+       if( player1.contains(4) && player1.contains(5) && player1.contains(6) ){
+           winer = 1
+       }
+       if( player2.contains(4) && player2.contains(5) && player2.contains(6) ){
+           winer = 2
+       }
+
+       // row 3
+       if( player1.contains(7) && player1.contains(8) && player1.contains(9) ){
+           winer = 1
+       }
+       if( player2.contains(7) && player2.contains(8) && player2.contains(9) ){
+           winer = 2
+       }
+
+       // col 1
+       if( player1.contains(7) && player1.contains(4) && player1.contains(1) ){
+           winer = 1
+       }
+       if( player2.contains(7) && player2.contains(4) && player2.contains(1) ){
+           winer = 2
+       }
+
+       // col 2
+       if( player1.contains(8) && player1.contains(5) && player1.contains(2) ){
+           winer = 1
+       }
+       if( player2.contains(8) && player2.contains(5) && player2.contains(2) ){
+           winer = 2
+       }
+
+       // col 3
+       if( player1.contains(9) && player1.contains(6) && player1.contains(3) ){
+           winer = 1
+       }
+       if( player2.contains(9) && player2.contains(6) && player2.contains(3) ){
+           winer = 2
+       }
+
+
+       // diag 1
+       if( player1.contains(1) && player1.contains(5) && player1.contains(3) ){
+           winer = 1
+       }
+       if( player2.contains(1) && player2.contains(5) && player2.contains(3) ){
+           winer = 2
+       }
+
+       // diag 2
+       if( player1.contains(1) && player1.contains(5) && player1.contains(9) ){
+           winer = 1
+       }
+       if( player2.contains(1) && player2.contains(5) && player2.contains(9) ){
+           winer = 2
+       }
+
+       if( winer == 1 ){
+           Toast.makeText(this, "Player 1 win ",Toast.LENGTH_LONG).show()
+       }else if ( winer == 2 ){
+           Toast.makeText(this, "Player 2 win ",Toast.LENGTH_LONG).show()
+       }
+
+
+
+   }
 }
