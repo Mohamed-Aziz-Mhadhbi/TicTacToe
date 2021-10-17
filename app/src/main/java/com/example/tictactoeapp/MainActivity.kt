@@ -1,5 +1,6 @@
 package com.example.tictactoeapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+    }
+
+    fun Reset(view: View){
+        finish()
+        startActivity(this.intent)
+        overridePendingTransition(0,0)
+    }
+
+    fun Enabelbu(){
+
+        bu1.isEnabled = false
+        bu2.isEnabled = false
+        bu3.isEnabled = false
+        bu4.isEnabled = false
+        bu5.isEnabled = false
+        bu6.isEnabled = false
+        bu7.isEnabled = false
+        bu8.isEnabled = false
+        bu9.isEnabled = false
     }
 
     fun ClickBu(view: View) {
@@ -42,12 +62,14 @@ class MainActivity : AppCompatActivity() {
 
         if( activePlayer == 1){
             buSelected.text = "X"
+            buSelected.setTextSize(50F)
             buSelected.setBackgroundResource(R.color.blue)
             player1.add(cellId)
             activePlayer = 2
         }else{
             buSelected.text = "O"
-            buSelected.setBackgroundResource(R.color.darkgreen)
+            buSelected.setTextSize(50F)
+            buSelected.setBackgroundResource(R.color.darkGreen)
             player2.add(cellId)
             activePlayer = 1
         }
@@ -118,17 +140,21 @@ class MainActivity : AppCompatActivity() {
        }
 
        // diag 2
-       if( player1.contains(1) && player1.contains(5) && player1.contains(9) ){
+       if( player1.contains(9) && player1.contains(5) && player1.contains(1) ){
            winer = 1
        }
-       if( player2.contains(1) && player2.contains(5) && player2.contains(9) ){
+       if( player2.contains(9) && player2.contains(5) && player2.contains(1) ){
            winer = 2
        }
 
        if( winer == 1 ){
+           Enabelbu()
            Toast.makeText(this, "Player 1 win ",Toast.LENGTH_LONG).show()
+           result.text = "Player 1 win "
        }else if ( winer == 2 ){
+           Enabelbu()
            Toast.makeText(this, "Player 2 win ",Toast.LENGTH_LONG).show()
+           result.text = "Player 2 win "
        }
 
 
